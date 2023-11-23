@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Hospedagens</title>
+    <a href="{% url 'criar' %}">Criar nova hospedagem</a>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Listagem de Hospedagens</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Data de Entrada</th>
+                <th>Data de Saída</th>
+                <th>Valor</th>
+                <th>Cliente</th>
+                <th>Quarto</th>
+                <th>Editar</th>
+                <th>Remover</th>
+                <th>Detalhar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hospedagem in hospedagens %}
+            <tr>
+                <td>{{ hospedagem.data_entrada }}</td>
+                <td>{{ hospedagem.data_saida }}</td>
+                <td>{{ hospedagem.valor }}</td>
+                <td>{{ hospedagem.cliente }}</td>
+                <td>{{ hospedagem.quarto }}</td>
+                <td><a href="{% url 'editar' hospedagem.id %}">Editar</a></td>
+                <td><a href="{% url 'deletar' hospedagem.id %}">Remover</a></td>
+                <td><a href="{% url 'detalhar' hospedagem.id %}">Detalhar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
